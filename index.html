@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>for you ♡</title>
+
+  <!-- =========================
+       FONTS
+       ========================= -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    /* =========================
+       RESET
+       ========================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* =========================
+       BACKGROUND
+       ========================= */
+
+    body {
+
+      background:
+        radial-gradient(
+          circle at center,
+          #f9d9e2 0%,
+          #f6cbd7 45%,
+          #efb8c8 100%
+        );
+
+      color: #4b2734;
+
+      font-family:
+        "Poppins",
+        sans-serif;
+
+      overflow: hidden;
+    }
+
+
+    /* =========================
+       SOFT GLOW
+       ========================= */
+
+    .glow {
+
+      position: fixed;
+
+      width: 450px;
+      height: 450px;
+
+      border-radius: 50%;
+
+      background: #ffffff;
+
+      filter:
+        blur(170px);
+
+      opacity: 0.25;
+
+      top: 50%;
+      left: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      pointer-events: none;
+
+      transition:
+        opacity 2s ease;
+    }
+
+
+    /* =========================
+       INTRO
+       ========================= */
+
+    .intro {
+
+      position: fixed;
+
+      inset: 0;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      text-align: center;
+
+      padding: 20px;
+
+      opacity: 1;
+
+      transform:
+        scale(1);
+
+      transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+
+      z-index: 100;
+    }
+
+
+    /* INTRO FADE OUT */
+
+    .intro.hide {
+
+      opacity: 0;
+
+      transform:
+        scale(0.96);
+
+      pointer-events: none;
+    }
+
+
+    /* =========================
+       INTRO BOX
+       ========================= */
+
+    .intro-content {
+
+      width:
+        min(520px, 92vw);
+
+      padding:
+        45px 30px;
+
+      background:
+        rgba(255, 239, 244, 0.86);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+      border-radius:
+        28px;
+
+      box-shadow:
+        0 20px 60px
+        rgba(120, 50, 75, 0.12);
+
+      backdrop-filter:
+        blur(10px);
+
+      opacity: 0;
+
+      transform:
+        translateY(20px);
+
+      animation:
+        introAppear 1.8s ease forwards;
+    }
+
+
+    /* =========================
+       HELLO
+       ========================= */
+
+    .hello {
+
+      font-family:
+        "Poppins",
+        sans-serif;
+
+      font-size:
+        clamp(2rem, 7vw, 3.5rem);
+
+      font-weight:
+        500;
+
+      color:
+        #4b2734;
+
+      margin-bottom:
+        35px;
+    }
+
+
+    /* =========================
+       CLICK TEXT
+       ========================= */
+
+    .click-text {
+
+      font-size:
+        1rem;
+
+      color:
+        #825363;
+
+      margin-bottom:
+        18px;
+
+      letter-spacing:
+        0.5px;
+    }
+
+
+    /* =========================
+       EYES BUTTON
+       ========================= */
+
+    .eyes {
+
+      border:
+        none;
+
+      background:
+        transparent;
+
+      color:
+        #4b2734;
+
+      font-size:
+        3rem;
+
+      cursor:
+        pointer;
+
+      padding:
+        10px 18px;
+
+      border-radius:
+        20px;
+
+      -webkit-tap-highlight-color:
+        transparent;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+
+    .eyes:hover {
+
+      transform:
+        scale(1.15);
+
+      background:
+        rgba(255, 255, 255, 0.25);
+    }
+
+
+    .eyes:active {
+
+      transform:
+        scale(0.85);
+    }
+
+
+    /* =========================
+       CONFESSION
+       ========================= */
+
+    .confession {
+
+      position: fixed;
+
+      inset: 0;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding:
+        20px;
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      z-index:
+        50;
+
+      transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+    }
+
+
+    .confession.show {
+
+      opacity:
+        1;
+
+      visibility:
+        visible;
+    }
+
+
+    /* =========================
+       CONFESSION BOX
+       ========================= */
+
+    .letter {
+
+      width:
+        min(700px, 94vw);
+
+      height:
+        min(82vh, 720px);
+
+      overflow-y:
+        auto;
+
+      padding:
+        45px 40px;
+
+      text-align:
+        center;
+
+      scrollbar-width:
+        none;
+
+      background:
+        rgba(255, 239, 244, 0.88);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.6);
+
+      border-radius:
+        28px;
+
+      box-shadow:
+        0 20px 60px
+        rgba(120, 50, 75, 0.12);
+
+      backdrop-filter:
+        blur(10px);
+
+      scroll-behavior:
+        smooth;
+    }
+
+
+    .letter::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    /* =========================
+       CONFESSION TEXT
+       ========================= */
+
+    .typing {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(1.35rem, 3.5vw, 1.7rem);
+
+      line-height:
+        1.8;
+
+      font-weight:
+        500;
+
+      color:
+        #4b2734;
+
+      white-space:
+        pre-wrap;
+
+      overflow-wrap:
+        break-word;
+    }
+
+
+    /* =========================
+       HEART
+       ========================= */
+
+    .heart {
+
+      margin-top:
+        45px;
+
+      font-size:
+        1.8rem;
+
+      color:
+        #9d526e;
+
+      opacity:
+        0;
+
+      transition:
+        opacity 2s ease;
+    }
+
+
+    .heart.show {
+
+      opacity:
+        1;
+    }
+
+
+    /* =========================
+       INTRO ANIMATION
+       ========================= */
+
+    @keyframes introAppear {
+
+      from {
+
+        opacity:
+          0;
+
+        transform:
+          translateY(20px);
+      }
+
+      to {
+
+        opacity:
+          1;
+
+        transform:
+          translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 600px) {
+
+      .intro {
+
+        padding:
+          16px;
+      }
+
+
+      .intro-content {
+
+        width:
+          92vw;
+
+        padding:
+          40px 20px;
+
+        border-radius:
+          24px;
+      }
+
+
+      .hello {
+
+        font-size:
+          2.25rem;
+
+        margin-bottom:
+          30px;
+      }
+
+
+      .click-text {
+
+        font-size:
+          0.88rem;
+      }
+
+
+      .eyes {
+
+        font-size:
+          2.7rem;
+
+        padding:
+          10px 16px;
+      }
+
+
+      .confession {
+
+        padding:
+          12px;
+      }
+
+
+      .letter {
+
+        width:
+          94vw;
+
+        height:
+          88vh;
+
+        padding:
+          35px 22px;
+
+        border-radius:
+          24px;
+      }
+
+
+      .typing {
+
+        font-size:
+          1.3rem;
+
+        line-height:
+          1.85;
+      }
+
+
+      .heart {
+
+        margin-top:
+          35px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       BACKGROUND GLOW
+       ========================= -->
+
+  <div class="glow"></div>
+
+
+  <!-- =========================
+       INTRO SCREEN
+       ========================= -->
+
+  <main
+    class="intro"
+    id="intro"
+  >
+
+    <div class="intro-content">
+
+
+      <div class="hello">
+
+        hi lol 😳😳
+
+      </div>
+
+
+      <div class="click-text">
+
+        ↓ anyways click this ↓
+
+      </div>
+
+
+      <button
+        type="button"
+        class="eyes"
+        id="eyes"
+        aria-label="click me"
+      >
+
+        👀👀
+
+      </button>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       CONFESSION
+       ========================= -->
+
+  <section
+    class="confession"
+    id="confession"
+  >
+
+    <div
+      class="letter"
+      id="letter"
+    >
+
+
+      <div
+        class="typing"
+        id="typing"
+      ></div>
+
+
+      <div
+        class="heart"
+        id="heart"
+      >
+
+        ♡
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <script>
+
+
+    /* =========================
+       YOUR CONFESSION
+       =========================
+
+       EDIT ONLY THE TEXT
+       BETWEEN THE BACKTICKS
+    */
+
+    const message = `okay...
+
+i've actually been wanting to tell you this for a while.
+
+i don't really know how to say it without making it sound cheesy, so i'll just be honest.
+
+you've become someone who's genuinely really special to me.
+
+talking to you, laughing with you, and even the random little conversations mean more to me than you probably realize.
+
+somehow, you became one of those people i actually look forward to hearing from.
+
+and honestly...
+
+i like you.
+
+a lot.
+
+i don't expect you to say anything right away, and i don't want you to feel pressured at all.
+
+i just wanted you to know how i feel, because you deserve to hear it from me.
+
+thank you for being you.`;
+
+
+    /* =========================
+       ELEMENTS
+       ========================= */
+
+    const intro =
+      document.getElementById(
+        "intro"
+      );
+
+    const eyes =
+      document.getElementById(
+        "eyes"
+      );
+
+    const confession =
+      document.getElementById(
+        "confession"
+      );
+
+    const typing =
+      document.getElementById(
+        "typing"
+      );
+
+    const heart =
+      document.getElementById(
+        "heart"
+      );
+
+    const glow =
+      document.querySelector(
+        ".glow"
+      );
+
+    const letter =
+      document.getElementById(
+        "letter"
+      );
+
+
+    /* =========================
+       TYPING SETTINGS
+       =========================
+
+       75 = slow
+       90 = slower
+       110 = very slow
+
+       Change this if needed.
+    */
+
+    const typingSpeed = 75;
+
+
+    let index = 0;
+
+
+    /* =========================
+       BUTTON
+       ========================= */
+
+    eyes.onclick = function () {
+
+
+      /*
+
+        Prevent double-clicking.
+
+      */
+
+      eyes.disabled =
+        true;
+
+
+      /*
+
+        Fade intro away.
+
+      */
+
+      intro.classList.add(
+        "hide"
+      );
+
+
+      /*
+
+        Wait for fade.
+
+      */
+
+      setTimeout(
+        function () {
+
+
+          /*
+
+            Remove intro completely.
+
+          */
+
+          intro.style.display =
+            "none";
+
+
+          /*
+
+            Show confession.
+
+          */
+
+          confession.classList.add(
+            "show"
+          );
+
+
+          /*
+
+            Make glow slightly
+            stronger.
+
+          */
+
+          glow.style.opacity =
+            "0.14";
+
+
+          /*
+
+            Give her a moment
+            before the typing begins.
+
+          */
+
+          setTimeout(
+            function () {
+
+              typeText();
+
+            },
+            900
+          );
+
+
+        },
+        1200
+      );
+
+    };
+
+
+    /* =========================
+       TYPING ANIMATION
+       ========================= */
+
+    function typeText() {
+
+
+      if (
+        index <
+        message.length
+      ) {
+
+
+        /*
+
+          Add one character.
+
+        */
+
+        typing.textContent +=
+          message.charAt(index);
+
+
+        index++;
+
+
+        /*
+
+          Automatically keep
+          the newest text visible.
+
+          We only scroll when
+          the text gets close
+          to the bottom so it
+          doesn't feel jittery.
+
+        */
+
+        const distanceFromBottom =
+          letter.scrollHeight -
+          letter.scrollTop -
+          letter.clientHeight;
+
+
+        if (
+          distanceFromBottom < 120
+        ) {
+
+          letter.scrollTo({
+
+            top:
+              letter.scrollHeight,
+
+            behavior:
+              "smooth"
+
+          });
+
+        }
+
+
+        /*
+
+          Type next character.
+
+        */
+
+        setTimeout(
+          typeText,
+          typingSpeed
+        );
+
+
+      } else {
+
+
+        /*
+
+          Typing finished.
+
+          Show heart.
+
+        */
+
+        setTimeout(
+          function () {
+
+            heart.classList.add(
+              "show"
+            );
+
+          },
+          1000
+        );
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
